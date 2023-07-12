@@ -18,9 +18,9 @@ module.exports = {
     ],
   },
   plugins: [
-
     new HtmlWebpackPlugin({
-      title: 'development',
+      title: 'ToDo-List',
+      filename: 'index.html',
     }),
   ],
 };
