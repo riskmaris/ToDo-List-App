@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>development</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="bundle.js"></script></head>
-  <body>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>ToDo List</title>
+<script defer src="main.bundle.js"></script></head>
+<body>
+    <div class="list-container">
+        <i class="bi bi-journal-text"></i>
+        <h1 id="list-heading">My To-Do-List</h1>
+        <ul id="list-item">
+            <form id="todo-form">
+                <input type="text" id="input-list" placeholder="My list">
+            </form>
+        </ul>
+        <button id="clear-btn" class="clear-btn">Clear the list</button>
+    </div>
+    <script src="index.js"></script>
+</body>
 </html>
