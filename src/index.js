@@ -1,78 +1,38 @@
-// import './styles.css';
+import AddList from './todos.js';
 
-// const toDoTasks = [
-//   {
-//     description: 'Walk the dog',
-//     completed: false,
-//     index: 0,
-//   },
-//   {
-//     description: 'Take breakfast',
-//     completed: true,
-//     index: 1,
-//   },
-//   {
-//     description: 'Complete my project',
-//     completed: false,
-//     index: 2,
-//   },
-// ];
+const myList = new AddList();
+myList.displayList();
 
-// // difining the UL id
-// const listItem = document.getElementById('list-item');
+function todoCheckbox() {
+  const checkboxes = document.querySelectorAll('.edit-text');
+  checkboxes.forEach((checkbox) => {
+    const index = checkbox.parentNode.querySelector('.editBtn').getAttribute('data-index');
+    const editInput = checkbox.parentNode.querySelector('.editBtn');
+    const { completed } = myList.todoDetails[index];
 
-// // loop through the array of obj and creat li for each
-// toDoTasks.forEach((todo) => {
-//   // Create a new li element
-//   const listElement = document.createElement('li');
-//   const spanElement = document.createElement('span');
-//   spanElement.textContent = todo.description;
+    checkbox.checked = completed;
+    editInput.classList.toggle('completed', completed);
 
-//   const checkboxElement = document.createElement('input');
-//   checkboxElement.type = 'checkbox';
-//   listElement.appendChild(checkboxElement);
-//   listElement.appendChild(spanElement);
+    checkbox.addEventListener('change', (event) => {
+      const isChecked = event.target.checked;
+      editInput.classList.toggle('completed', isChecked);
+      myList.todoDetails[index].completed = isChecked;
+      localStorage.setItem('todoData', JSON.stringify(myList.todoDetails));
+    });
+  });
+}
 
-//   if (todo.completed) {
-//     listItem.classList.add('completed');
-//   }
-//   listItem.appendChild(listElement);
-// });
-
-
-import './style.css';
-import UI from './modules/UI.js';
-import Store from './modules/localstorage.js';
-
-// Event for Displaying the to do tasks
-document.addEventListener('DOMContentLoaded', UI.displayToDoList);
-
-// Event for adding new to do tasks
-document.querySelector('#todo-form').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    UI.getNewToDoTask();
+const addButton = document.getElementById('add-button');
+addButton.addEventListener('click', () => {
+  const task = document.getElementById('task').value.trim();
+  const completed = false;
+  const index = myList.todoDetails.length + 1;
+  if (task) {
+    myList.addRow(task, completed, index);
+    myList.displayList();
+    document.getElementById('task').value = '';
+    todoCheckbox();
   }
 });
 
-// Event for deleting new item for the list
-document.querySelector('#list-item').addEventListener('click', (e) => {
-  Store.removetodoTask(e.target);
-  UI.deletetodoTask(e.target);
-});
-
-// Event for editing the to do list
-document.querySelector('#list-item').addEventListener('click', (e) => {
-  if (e.target.classList.contains('bi-pencil-square')) {
-    UI.editToDoTask(e.target);
-  }
-});
-
-// Event for updating tasks
-document.querySelector('#list-item').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && e.target.classList.contains('edit-list')) {
-    e.preventDefault();
-    Store.updatetodoTask(e.target);
-    window.location.reload();
-  }
-});
+window.addEventListener('DOMContentLoaded', todoCheckbox);

@@ -20,7 +20,7 @@
 
 # 📖 ToDo-List <a name="about-project"></a>
 
-My To-Do List is a simple website that is created using ES6 syntax and modules to displays a list of tasks.
+My To-Do List is a simple website that is created using Webpack and ES6 syntax where a user can add and remove tasks.
 
 ## 🛠 Built With <a name="built-with"></a>
     Webpack
