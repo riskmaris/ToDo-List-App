@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylemsheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>ToDo List</title>
-</head>
-<body>
-    <div class="list-container">
-        <h1 id="list-heading">My To-Do-List</h1>
-        <ul id="list-item">
-            <for id="todo-form">
-                <input type="text" id="input-list" placeholder="My list">
-            </form>
-        </ul>
-        <button id="clear-btn" class="clear-btn">Clear the list</button>
-    </div>
-    <script src="index.js"></script>
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <section class="card">
+            <div class="head">
+                <p>Today's To Do</p>
+                <i class="fa-solid fa-rotate rotate"></i>
+            </div>
+            <hr>
+            <div class="addData">
+                <input id="task" type="text" placeholder="My List...." required>
+                <button type="button"> <i id="add-button" class="fa-solid fa-turn-down turnLeft"></i> </button>
+            </div>
+            <hr>
+            <ul id="lists" class="lists">
+                    
+            </ul>
+            <button class="clear-btn" type="button">Clear all completed</button>
+        </section>
+    
+        <script type="module" src="index.js"></script>
+    </body>
+    </html>
+
+

@@ -1,40 +1,38 @@
-// import './styles.css';
+import AddList from './todos.js';
 
-const toDoTasks = [
-  {
-    description: 'Walk the dog',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Take breakfast',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Complete my project',
-    completed: false,
-    index: 2,
-  },
-];
+const myList = new AddList();
+myList.displayList();
 
-// difining the UL id
-const listItem = document.getElementById('list-item');
+function todoCheckbox() {
+  const checkboxes = document.querySelectorAll('.edit-text');
+  checkboxes.forEach((checkbox) => {
+    const index = checkbox.parentNode.querySelector('.editBtn').getAttribute('data-index');
+    const editInput = checkbox.parentNode.querySelector('.editBtn');
+    const { completed } = myList.todoDetails[index];
 
-// loop through the array of obj and creat li for each
-toDoTasks.forEach((todo) => {
-  // Create a new li element
-  const listElement = document.createElement('li');
-  const spanElement = document.createElement('span');
-  spanElement.textContent = todo.description;
+    checkbox.checked = completed;
+    editInput.classList.toggle('completed', completed);
 
-  const checkboxElement = document.createElement('input');
-  checkboxElement.type = 'checkbox';
-  listElement.appendChild(checkboxElement);
-  listElement.appendChild(spanElement);
+    checkbox.addEventListener('change', (event) => {
+      const isChecked = event.target.checked;
+      editInput.classList.toggle('completed', isChecked);
+      myList.todoDetails[index].completed = isChecked;
+      localStorage.setItem('todoData', JSON.stringify(myList.todoDetails));
+    });
+  });
+}
 
-  if (todo.completed) {
-    listItem.classList.add('completed');
+const addButton = document.getElementById('add-button');
+addButton.addEventListener('click', () => {
+  const task = document.getElementById('task').value.trim();
+  const completed = false;
+  const index = myList.todoDetails.length + 1;
+  if (task) {
+    myList.addRow(task, completed, index);
+    myList.displayList();
+    document.getElementById('task').value = '';
+    todoCheckbox();
   }
-  listItem.appendChild(listElement);
 });
+
+window.addEventListener('DOMContentLoaded', todoCheckbox);
