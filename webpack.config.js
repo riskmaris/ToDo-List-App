@@ -14,6 +14,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: 'index.html',
+      chunks: ['index'],
+      css: ['styles.css'],
     }),
   ],
   output: {
@@ -33,4 +36,8 @@ module.exports = {
       },
     ],
   },
+  // resolve: {
+  //   extensions: ['.js'],
+  //   modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+  // },
 };
