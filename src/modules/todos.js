@@ -41,7 +41,7 @@ export default class AddList {
       });
     });
 
-    //---------------checkbox code------------------
+    // ---------------checkbox code------------------
 
     const checkboxes = document.querySelectorAll('.edit-text');
     checkboxes.forEach((checkbox) => {
@@ -66,5 +66,5 @@ export default class AddList {
       myCrud.todoDetails = myCrud.removeCompletedTask();
       this.displayList();
     });
-  };
-};
+  }
+}
